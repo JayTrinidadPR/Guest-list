@@ -132,7 +132,6 @@ body {
   .guestTable thead {
     display: none; /* hides header on small screens */
   }
-
   .guestTable, .guestTable tbody, .guestTable tr, .guestTable td {
     display: block;
     width: 100%;
