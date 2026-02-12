@@ -1,9 +1,155 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #121826;
+  --muted: #5b6475;
+  --border: rgba(18, 24, 38, 0.12);
+  --shadow: 0 18px 50px rgba(18, 24, 38, 0.14);
+
+  --row: rgba(18, 24, 38, 0.03);
+  --rowHover: rgba(18, 24, 38, 0.06);
+
+  --highlight: #fff4a3;
+  --highlightBorder: rgba(210, 160, 0, 0.35);
+
+  --radius: 18px;
 }
 
-button {
-  margin-top: 8px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 700px at 30% 10%, #eef2ff 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 18px;
+}
+
+.card {
+  width: min(900px, 96vw);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 22px 18px;
+}
+
+.title {
+  margin: 6px 0 18px;
+  text-align: center;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.6px;
+  font-weight: 800;
+}
+
+.guestTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 15px;
+}
+
+.guestTable thead th {
+  text-align: left;
+  padding: 14px 14px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.guestTable tbody td {
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(18, 24, 38, 0.07);
+  vertical-align: middle;
+}
+
+.guestTable tbody tr {
   cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.guestTable tbody tr:nth-child(odd) {
+  background: var(--row);
+}
+
+.guestTable tbody tr:hover {
+  background: var(--rowHover);
+}
+
+.guestTable tbody tr:active {
+  transform: scale(0.999);
+}
+
+/* Rounded corners for the table */
+.guestTable thead th:first-child {
+  border-top-left-radius: 14px;
+}
+.guestTable thead th:last-child {
+  border-top-right-radius: 14px;
+}
+.guestTable tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 14px;
+}
+.guestTable tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 14px;
+}
+
+.selectedRow {
+  background: var(--highlight) !important;
+  outline: 2px solid var(--highlightBorder);
+  outline-offset: -2px;
+}
+
+/* Make long emails wrap nicely */
+.guestTable td:nth-child(2) {
+  word-break: break-word;
+}
+
+/* Helper text */
+.hint {
+  margin: 14px 2px 2px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Optional: responsive tweaks */
+@media (max-width: 620px) {
+  .card {
+    padding: 18px 14px 14px;
+  }
+
+  .guestTable thead {
+    display: none; /* hides header on small screens */
+  }
+
+  .guestTable, .guestTable tbody, .guestTable tr, .guestTable td {
+    display: block;
+    width: 100%;
+  }
+
+  .guestTable tbody tr {
+    border: 1px solid rgba(18, 24, 38, 0.08);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .guestTable tbody td {
+    border-bottom: 1px solid rgba(18, 24, 38, 0.07);
+  }
+
+  .guestTable tbody td:last-child {
+    border-bottom: none;
+  }
 }
